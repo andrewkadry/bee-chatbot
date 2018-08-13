@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function subs(choosenPage){
+        alert("congrates your 554 is ready now ;)");
+
+        $.ajax({
+            type: 'POST',
+            url: '/dashboard',
+            data: {
+                PageID: choosenPage
+            },
+            success: function (data) {
+                //do something with the data via front-end framework
+                if(data === 'done')
+                    alert("congrates your chatbot is ready now ;)");
+            }
+        });
+
+    }
+    function logout(){
+        window.location.assign("https://saybye.herokuapp.com/logout");
+
+    }
+</script>
+<h1>welcome <%= userName %> ;)</h1>
+<%for(var i=0; i<userPages.length; i++){%>
+	<button onclick="subs(<%=userPages[i].pageID %>)"> <%= userPages[i].pageName %></button><br>
+<%}%>
+
+<br><button onclick="logout()">logout</button>
+
+
+</body>
+</html>
+
